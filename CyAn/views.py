@@ -16,7 +16,7 @@ def cyan_nmap(target):
                 #output = "Burp was selected"
                 #output = "Scanning URL" %cho
                 output = process.stdout.read()
-                outp = "NMAP Scan finished and exported to XML file"
+                output = "NMAP Scan finished and exported to XML file"
                 exitstatus = process.poll()
                 if (exitstatus==0):
                         return {"status": "Success", "output":str(output)}
@@ -33,7 +33,7 @@ def cyan_zap(target):
                 #output = "Burp was selected"
                 #output = "Scanning URL" %cho
                 output = process.stdout.read()
-                outp = "ZAP Scan finished and exported to XML file"
+                output = "ZAP Scan finished and exported to XML file"
                 exitstatus = process.poll()
                 if (exitstatus==0):
                         return {"status": "Success", "output":str(output)}
