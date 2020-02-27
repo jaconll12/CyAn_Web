@@ -51,16 +51,27 @@ def cyan(request):
         if request.method == 'POST':
                 request_data=json.loads(request.body)
                 #data = cyan_1()
+                url = request_data["url"]
                 if request_data["scanner"] == "nmap":
-                        url = request_data["url"]
                         data = cyan_nmap(url)
                 elif request_data["scanner"] == "zap":
-                        url = request_data["url"]
                         data = cyan_zap(url)
                 else:
                         data = {"status": "not defined", "output":"not defined"}
 
                 
+                response = HttpResponse(json.dumps(data) , content_type='application/json', status=200)
+                return response
+        elif request.method == 'GET':
+                scanner = request.GET['scanner']
+                url = request.GET['url']
+                if scanner == "nmap":
+                        data = cyan_nmap(url)
+                elif scanner == "zap":
+                        data = cyan_zap(url)
+                else:
+                        data = {"status": "not defined", "output":"not defined"}
                 
                 response = HttpResponse(json.dumps(data) , content_type='application/json', status=200)
                 return response
+                #return HttpResponse('<h2>GET Worked. Scanner is {}, and the URL to be scanned it {}</h2>'.format(scanner,url))

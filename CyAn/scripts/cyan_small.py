@@ -68,7 +68,7 @@ def menu():
             input("Wrong option selection. Enter any key to try again..")
     return (answer)
 def nmapscan(url):
-    os.system("nmap -sV " +str(url) + " -oX ../CyAN/output/out.xml")
+    os.system("nmap -sV --script http-enum " +str(url) + " -oX Cyan/output/out.xml")
     print(url)
 def zapscan(url):
     print  ("Zap scan started")
