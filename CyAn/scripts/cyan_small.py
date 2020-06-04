@@ -2,6 +2,7 @@ import os
 import subprocess
 import time
 from pprint import pprint
+from datetime import datetime
 import sys
 #import nessus_scan
 #import docker_start_threadfix
@@ -67,11 +68,15 @@ def menu():
             # Any integer inputs other than values 1-5 we print an error message
             input("Wrong option selection. Enter any key to try again..")
     return (answer)
+def niktoscan(url):
+    os.system("nikto -h " +str(url)+ " -output nikto_"+str(url) + ".txt")
+    print(url)
 def nmapscan(url):
-    os.system("nmap -sV --script http-enum " +str(url) + " -oX Cyan/output/out.xml")
+    os.system("nmap -sV -sC --script http-enum " +str(url) + " -oX CyAn/output/nmap_out_" +str(url) + ".xml")
     print(url)
 def zapscan(url):
     print  ("Zap scan started")
+    createconfig(url)
     os.system("python /Users/jamesclloyd/CyAn_Web/CyAn/scripts/zap_api.py")
     #import threadfix_upload_ZAP
     #threadfix_upload_ZAP
@@ -79,15 +84,23 @@ def zapscan(url):
 
 def createconfig(url):
     #tar = sys.argv[0]
-    tar = url
+  
+    tar = "http://" + url
     data = {}
     data ['target'] = []
     data['target'].append({
     'URL': tar
     })
-    with open('config1.json', 'w') as json_data:
+    with open('/Users/jamesclloyd/CyAn_Web/CyAn/scripts/config1.json', 'w') as json_data:
         json.dump(data, json_data, indent=4)
         json_data.close()
+
+
+def closeup(url):
+    today = datetime.now()
+    folder = today.strftime('%Y%m%d') +"_" +str(url)
+    os.mkdir("CyAn/output/" + folder)
+    os.system("mv -rf Cyan/output/* CyAn/output/" + folder)
 
 
 #answer = menu()
@@ -97,6 +110,11 @@ if scanner == "nmap":
     nmapscan(tar)
 elif scanner== "zap":
     zapscan(tar)
+elif scanner== "nikto":
+    niktoscan(tar)
+
+
+closeup(tar)
 
 
 

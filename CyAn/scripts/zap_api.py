@@ -10,19 +10,19 @@ import subprocess
 import json
 from zapv2 import ZAPv2
 
-with open('../../../zap.json') as json_data:
+with open('/Users/jamesclloyd/zap.json') as json_data:
     d = json.load(json_data)
 #target = d["zap"]["host"]
 apikey = d["zap"]["api_key"]
-with open('CyAn/scripts/config1.json') as json_data:
+with open('/Users/jamesclloyd/CyAn_Web/CyAn/scripts/config1.json') as json_data:
     d = json.load(json_data)
     for p in d['target']:
         target = p["URL"]
 
-print 'Starting ZAP ...'
+print ('Starting ZAP ...')
 subprocess.Popen(['/Applications/OWASP ZAP.app/Contents/Java/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
 #subprocess.Popen(['/Applications/OWASP ZAP.app/Contents/Java/zap.sh'', '-daemon'],stdout=open(os.devnull,'w'))
-print 'Waiting for ZAP to load, 20 seconds ...'
+print ('Waiting for ZAP to load, 20 seconds ...') 
 time.sleep(20)
 
 #apikey = key # Change to match the API key set in ZAP, or use None if the API key is disabled
@@ -47,17 +47,17 @@ while (int(zap.spider.status(scanid)) < 100):
     print ('Spider progress %: ' + zap.spider.status(scanid))
     time.sleep(2)
 
-print 'Spider completed'
+print ('Spider completed')
 # Give the passive scanner a chance to finish
 time.sleep(5)
 
-print 'Scanning target %s' % target
+print ('Scanning target %s' % target)
 scanid = zap.ascan.scan(target)
 while (int(zap.ascan.status(scanid)) < 100):
-    print 'Scan progress %: ' + zap.ascan.status(scanid)
+    print ('Scan progress %: ' + zap.ascan.status(scanid))
     time.sleep(5)
 
-print 'Scan completed'
+print ('Scan completed')
 
 # Report the results
 
@@ -66,7 +66,7 @@ print 'Scan completed'
 #pprint (zap.core.alerts())
 
 report_type = 'xml'
-report_file = '/Users/jamesclloyd/CyAn_Web/CyAn/output/zap_report.xml'
+report_file = '../output/zap_report.xml'
 with open(report_file, 'w') as f:
     xml = zap.core.xmlreport()
     f.write(xml)
