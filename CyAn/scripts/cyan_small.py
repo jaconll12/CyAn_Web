@@ -91,7 +91,7 @@ def createconfig(url):
     data['target'].append({
     'URL': tar
     })
-    with open('/Users/jamesclloyd/CyAn_Web/CyAn/scripts/config1.json', 'w') as json_data:
+    with open('CyAn/scripts/config1.json', 'w') as json_data:
         json.dump(data, json_data, indent=4)
         json_data.close()
 
