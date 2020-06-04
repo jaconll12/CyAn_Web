@@ -94,6 +94,7 @@ def createconfig(url):
     with open('CyAn/scripts/config1.json', 'w') as json_data:
         json.dump(data, json_data, indent=4)
         json_data.close()
+        
 
 
 def closeup(url):
