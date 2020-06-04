@@ -77,7 +77,7 @@ def nmapscan(url):
 def zapscan(url):
     print  ("Zap scan started")
     createconfig(url)
-    os.system("python /Users/jamesclloyd/CyAn_Web/CyAn/scripts/zap_api.py")
+    os.system("python CyAn/scripts/zap_api.py")
     #import threadfix_upload_ZAP
     #threadfix_upload_ZAP
     #print ("ZAP Scan Uploaded")
