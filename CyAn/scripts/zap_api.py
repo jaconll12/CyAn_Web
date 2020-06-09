@@ -18,6 +18,7 @@ with open('/Users/jamesclloyd/CyAn_Web/CyAn/scripts/config1.json') as json_data:
     d = json.load(json_data)
     for p in d['target']:
         target = p["URL"]
+        hostname = p["hostname"]
 
 print ('Starting ZAP ...')
 subprocess.Popen(['/Applications/OWASP ZAP.app/Contents/Java/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
@@ -66,7 +67,7 @@ print ('Scan completed')
 #pprint (zap.core.alerts())
 
 report_type = 'xml'
-report_file = '../output/zap_report.xml'
+report_file = 'CyAn/output/zap_report_' +str(hostname) + '.xml'
 with open(report_file, 'w') as f:
     xml = zap.core.xmlreport()
     f.write(xml)

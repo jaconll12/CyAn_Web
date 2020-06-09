@@ -96,9 +96,9 @@ def cyan(request):
                 elif scanner == "nikto":
                         t_data = cyan_nikto(url)
                 elif scanner == "all":
-                        data1 = cyan_nmap(url)
-                        data2 = cyan_zap(url)
-                        data3 = cyan_nikto(url)
+                        t_data = cyan_nmap(url)
+                        t_data = cyan_zap(url)
+                        t_data = cyan_nikto(url)
                         #t_data = {}
                         #for d in (data2, data2, data3): t_data.update(d)
                         t_data = "Scan Completed agaist %s, using ZAP, NMAP, and Nikto.  Check Output folder for results" %url

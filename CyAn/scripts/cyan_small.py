@@ -69,7 +69,7 @@ def menu():
             input("Wrong option selection. Enter any key to try again..")
     return (answer)
 def niktoscan(url):
-    os.system("nikto -h " +str(url)+ " -output nikto_"+str(url) + ".txt")
+    os.system("nikto -h " +str(url)+ " -output CyAn/output/nikto_"+str(url) + ".txt")
     print(url)
 def nmapscan(url):
     os.system("nmap -sV -sC --script http-enum " +str(url) + " -oX CyAn/output/nmap_out_" +str(url) + ".xml")
@@ -89,19 +89,23 @@ def createconfig(url):
     data = {}
     data ['target'] = []
     data['target'].append({
-    'URL': tar
+    'URL': tar,
+    'hostname': url
     })
     with open('CyAn/scripts/config1.json', 'w') as json_data:
         json.dump(data, json_data, indent=4)
         json_data.close()
-        
+
 
 
 def closeup(url):
     today = datetime.now()
     folder = today.strftime('%Y%m%d') +"_" +str(url)
-    os.mkdir("CyAn/output/" + folder)
-    os.system("mv -rf Cyan/output/* CyAn/output/" + folder)
+    if not os.path.exists("CyAn/" + folder):
+        os.makedirs("CyAn/" + folder)
+        #os.mkdir("CyAn/" + folder)
+    os.system("cp -rf CyAn/output/* CyAn/" + folder)
+    os.system("rm CyAn/output/*")
 
 
 #answer = menu()
