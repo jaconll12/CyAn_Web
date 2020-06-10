@@ -96,11 +96,20 @@ def cyan(request):
                 elif scanner == "nikto":
                         t_data = cyan_nikto(url)
                 elif scanner == "all":
-                        t_data = cyan_nmap(url)
-                        t_data = cyan_zap(url)
-                        t_data = cyan_nikto(url)
-                        #t_data = {}
-                        #for d in (data2, data2, data3): t_data.update(d)
+                        data1 = cyan_nmap(url)                
+                        data2 = cyan_zap(url)
+                        data3 = cyan_nikto(url)
+                        with open('CyAn/results_dump.json','a+') as fp:
+                                #data1 = json.dump(fp)
+                                json.dump(data1, fp)
+                                data1.update(data2)
+                                json.dump(data1, fp)
+                                data1.update(data3)
+                                json.dump(data1, fp)
+                        # use the following 2 lines if you want to see the output on the screen
+                        #with open('CyAn/results_dump.json','r') as f:
+                        #        t_data = f.read() 
+                        # use the following line of you jsut want text output on the screen
                         t_data = "Scan Completed agaist %s, using ZAP, NMAP, and Nikto.  Check Output folder for results" %url
                         
                 else:
