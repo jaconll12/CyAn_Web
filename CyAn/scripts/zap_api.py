@@ -10,11 +10,11 @@ import subprocess
 import json
 from zapv2 import ZAPv2
 
-with open('/Users/jamesclloyd/zap.json') as json_data:
+with open('../zap.json') as json_data:
     d = json.load(json_data)
 #target = d["zap"]["host"]
 apikey = d["zap"]["api_key"]
-with open('/Users/jamesclloyd/CyAn_Web/CyAn/scripts/config1.json') as json_data:
+with open('CyAn/scripts/config1.json') as json_data:
     d = json.load(json_data)
     for p in d['target']:
         target = p["URL"]

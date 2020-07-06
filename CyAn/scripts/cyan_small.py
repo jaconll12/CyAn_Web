@@ -4,11 +4,14 @@ import time
 from pprint import pprint
 from datetime import datetime
 import sys
-#import nessus_scan
-#import docker_start_threadfix
+import mysql.connector
+from mysql.connector import Error
+from mysql.connector import errorcode
+
+
 import json
 #import local_cleanup
-import sys 
+
 #import create_config
 
 tar = sys.argv[2]
@@ -33,58 +36,25 @@ def print_menu():       ## Your menu design here
     print ("5. Exit")
     print (67 * "-")
     
-def menu():
-    loop=True      
-  
-    while loop:          ## While loop which will keep going until loop = False
-        print_menu()    ## Displays menu
-        choice = input("Enter your choice [1-5]: ")
-        if choice == "1":     
-            answer = "burp"
-            print  ("Burp was selected")
-            print (answer)
-            loop=False
-        elif choice=="2":
-            answer = "NMAP"
-            print  ("NMAP was selected")
-            print (answer)
-            loop=False
-        elif choice=="3":
-            answer = "zap"
-            print  ("Zap was selected")
-            print (answer)
-            loop=False
-        elif choice=="4":
-            answer = "all"
-            print  ("All Scanners was selected")
-            print (answer)
-            loop=False
-        elif choice=="5":
-            answer = "exit"
-            print  ("Exiting")
-            sys.exit()
-            break
-        else:
-            # Any integer inputs other than values 1-5 we print an error message
-            input("Wrong option selection. Enter any key to try again..")
-    return (answer)
+
 def niktoscan(url):
-    os.system("nikto -h " +str(url)+ " -output CyAn/output/nikto_"+str(url) + ".txt")
+    results = subprocess.check_output("nikto -h " +str(url)+ " -output CyAn/output/nikto_"+str(url) + ".txt", shell=True)
     print(url)
+    return results
+     
 def nmapscan(url):
-    os.system("nmap -sV -sC --script http-enum " +str(url) + " -oX CyAn/output/nmap_out_" +str(url) + ".xml")
+    results = subprocess.check_output("nmap -sV -sC --script http-enum,http-headers,http-methods " +str(url) + " -oX CyAn/output/nmap_out_" +str(url) + ".xml", shell=True)
     print(url)
+    return results
+   
 def zapscan(url):
     print  ("Zap scan started")
     createconfig(url)
-    os.system("python CyAn/scripts/zap_api.py")
-    #import threadfix_upload_ZAP
-    #threadfix_upload_ZAP
-    #print ("ZAP Scan Uploaded")
+    results = subprocess.check_output("python CyAn/scripts/zap_api.py", shell=True)
+    return results
 
+    
 def createconfig(url):
-    #tar = sys.argv[0]
-  
     tar = "http://" + url
     data = {}
     data ['target'] = []
@@ -97,6 +67,39 @@ def createconfig(url):
         json_data.close()
 
 
+def write_db(url,nmapresults,niktoresults,zapresults):
+    with open('../db.json') as json_data:
+        d = json.load(json_data)
+        for p in d['db']:
+            db = p["database"]
+            host = p["host"]
+            user = p["user"]
+            password = p["password"] 
+
+
+    now = datetime.now()
+    formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
+    try:
+        connection = mysql.connector.connect(host=host,
+                                         database=db,
+                                         user=user,
+                                         password=password,
+                                         auth_plugin='mysql_native_password')
+        mySql_insert_query = """INSERT INTO findings (url,nmap_results, nikto_results, zap_results, date_ran) VALUES (%s,%s,%s,%s,%s) """,(url,nmapresults, niktoresults, zapresults, formatted_date)
+        cursor = connection.cursor()
+        cursor.execute(*mySql_insert_query)
+        connection.commit()
+        print(cursor.rowcount, "Record inserted successfully into Findings Database")
+        cursor.close()
+
+    except mysql.connector.Error as error:
+        print("Failed to insert record into Findings Database {}".format(error))
+
+    finally:
+        if (connection.is_connected()):
+            connection.close()
+            print("MySQL connection is closed")
+
 
 def closeup(url):
     today = datetime.now()
@@ -108,17 +111,18 @@ def closeup(url):
     os.system("rm CyAn/output/*")
 
 
-#answer = menu()
 createconfig(tar)
-#print ("This is the option: " + answer)
+nmapr = "NULL"
+niktor = "NULL"
+zapr = "NULL"
 if scanner == "nmap":
-    nmapscan(tar)
+    nmapr = nmapscan(tar)
 elif scanner== "zap":
-    zapscan(tar)
+    zapr = zapscan(tar)
 elif scanner== "nikto":
-    niktoscan(tar)
+    niktor= niktoscan(tar)
 
-
+write_db(tar, nmapr, niktor, zapr)
 closeup(tar)
 
 
