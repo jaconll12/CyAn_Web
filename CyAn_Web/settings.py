@@ -80,8 +80,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'cyan_django_db',
         'USER': 'dbadmin',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
+        'PASSWORD': 'Password1@',
+        'HOST': 'mysql', 
         'PORT': '3306',
     }
 }

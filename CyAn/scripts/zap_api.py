@@ -10,7 +10,7 @@ import subprocess
 import json
 from zapv2 import ZAPv2
 
-with open('../zap.json') as json_data:
+with open('zap.json') as json_data:
     d = json.load(json_data)
 #target = d["zap"]["host"]
 apikey = d["zap"]["api_key"]
@@ -21,17 +21,17 @@ with open('CyAn/scripts/config1.json') as json_data:
         hostname = p["hostname"]
 
 print ('Starting ZAP ...')
-subprocess.Popen(['/Applications/OWASP ZAP.app/Contents/Java/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
+#subprocess.Popen(['/home/zap/ZAP_2.9.0/zap.sh','-daemon'],stdout=open(os.devnull,'w'))
 #subprocess.Popen(['/Applications/OWASP ZAP.app/Contents/Java/zap.sh'', '-daemon'],stdout=open(os.devnull,'w'))
-print ('Waiting for ZAP to load, 20 seconds ...') 
-time.sleep(20)
+#print ('Waiting for ZAP to load, 20 seconds ...') 
+#time.sleep(20)
 
-#apikey = key # Change to match the API key set in ZAP, or use None if the API key is disabled
+apikey = "5364864132243598420485" # Change to match the API key set in ZAP, or use None if the API key is disabled
 
 # By default ZAP API client will connect to port 8080
 #zap = ZAPv2(apikey=apikey)
 # Use the line below if ZAP is not listening on port 8080, for example, if listening on port 8090
-zap = ZAPv2(apikey=apikey, proxies={'http': 'http://127.0.0.1:8090', 'https': 'http://127.0.0.1:8090'})
+zap = ZAPv2(apikey=apikey, proxies={'http': 'http://zap_api:8090', 'https': 'http://zap_api:8090'})
 
 # do stuff
 print ('Accessing target %s' % target)

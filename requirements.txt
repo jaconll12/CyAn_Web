@@ -1,0 +1,11 @@
+Django
+django-sslserver
+djangorestframework
+mysql-connector
+mysql-connector-python
+mysql-connector-python-rf
+pyOpenSSL
+python-owasp-zap-v2.4
+requests
+urllib3
+python-owasp-zap-v2.4

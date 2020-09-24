@@ -38,7 +38,7 @@ def print_menu():       ## Your menu design here
     
 
 def niktoscan(url):
-    results = subprocess.check_output("nikto -h " +str(url)+ " -output CyAn/output/nikto_"+str(url) + ".txt", shell=True)
+    results = subprocess.getoutput("perl /home/nikto/nikto/program/nikto.pl -h " +str(url))
     print(url)
     return results
      
@@ -50,7 +50,9 @@ def nmapscan(url):
 def zapscan(url):
     print  ("Zap scan started")
     createconfig(url)
-    results = subprocess.check_output("python CyAn/scripts/zap_api.py", shell=True)
+    #tar = "http://" + url
+    #results = subprocess.getoutput("docker run -t owasp/zap2docker-stable zap-full-scan.py -t" +str(tar))
+    results = subprocess.getoutput("python CyAn/scripts/zap_api.py")
     return results
 
     
@@ -68,22 +70,23 @@ def createconfig(url):
 
 
 def write_db(url,nmapresults,niktoresults,zapresults):
-    with open('../db.json') as json_data:
+    with open('db.json') as json_data:
         d = json.load(json_data)
         for p in d['db']:
-            db = p["database"]
+            datab = p["database"]
             host = p["host"]
             user = p["user"]
             password = p["password"] 
 
-
+   
     now = datetime.now()
     formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
     try:
-        connection = mysql.connector.connect(host=host,
-                                         database=db,
-                                         user=user,
-                                         password=password,
+        connection = mysql.connector.connect(host = host,
+                                         port = "3306",
+                                         database = datab,
+                                         user= user,
+                                         password = password,
                                          auth_plugin='mysql_native_password')
         mySql_insert_query = """INSERT INTO findings (url,nmap_results, nikto_results, zap_results, date_ran) VALUES (%s,%s,%s,%s,%s) """,(url,nmapresults, niktoresults, zapresults, formatted_date)
         cursor = connection.cursor()
@@ -95,10 +98,10 @@ def write_db(url,nmapresults,niktoresults,zapresults):
     except mysql.connector.Error as error:
         print("Failed to insert record into Findings Database {}".format(error))
 
-    finally:
-        if (connection.is_connected()):
-            connection.close()
-            print("MySQL connection is closed")
+    #finally:
+        #if (connection.is_connected()):
+        #    connection.close()
+        #    print("MySQL connection is closed")
 
 
 def closeup(url):
