@@ -42,7 +42,8 @@ try:
         print("NMAP Results = ", row[1])
         print("Nikto Results = ", row[2])
         print("ZAP Results = ", row[3])
-        print("Date Ran = ", row[4], "\n")
+        print("WPScan Results = ", row[4], "\n")
+        print("Date Ran = ", row[5], "\n")
 
 
 except Error as e:

@@ -7,7 +7,22 @@ import json,requests
 import xml
 from subprocess import Popen, PIPE, STDOUT
 
+def cyan_all(target):
 
+        command = ["python3","CyAn/scripts/cyan_small.py","all",target]
+        try:
+                process = Popen(command, stdout=PIPE, stderr=STDOUT)
+                #output = "Burp was selected"
+                #output = "Scanning URL" %cho
+                output = process.stdout.read()
+                #output = "NMAP Scan finished and exported to XML file"
+                exitstatus = process.poll()
+                if (exitstatus==0):
+                        return {"status": "Success", "output":str(output)}
+                else:
+                        return {"status": "Failed", "output":str(output)}
+        except Exception as e:
+                return {"status": "failed", "output":str(e)}
 
 def cyan_nmap(target):
 
@@ -60,6 +75,20 @@ def cyan_nikto(target):
                         return {"status": "Failed", "output":str(output)}
         except Exception as e:
                 return {"status": "failed", "output":str(e)}
+def cyan_wpscan(target):
+
+        command = ["python3","CyAn/scripts/cyan_small.py","wpscan",target]
+        try:
+                process = Popen(command, stdout=PIPE, stderr=STDOUT)
+                output = process.stdout.read()
+                #output = "ZAP Scan finished and exported to XML file"
+                exitstatus = process.poll()
+                if (exitstatus==0):
+                        return {"status": "Success", "output":str(output)}
+                else:
+                        return {"status": "Failed", "output":str(output)}
+        except Exception as e:
+                return {"status": "failed", "output":str(e)}
 
 
 def search(target):
@@ -94,11 +123,10 @@ def cyan(request):
                         t_data = cyan_zap(url)
                 elif request_data["scanner"] == "nikto":
                         t_data = cyan_nikto(url)
+                elif request_data["scanner"] == "wpscan":
+                        t_data = cyan_wpscan(url)
                 elif request_data["scanner"] == "all":
-                        data1 = cyan_nmap(url)
-                        data2 = cyan_zap(url)
-                        data3 = cyan_nikto(url)
-                        t_data = dict(data1.items() + data2.items() + data3.items())
+                        t_data = cyan_all(url)
                 else:
                         t_data = {"status": "not defined", "output":"not defined"}
 
@@ -115,22 +143,10 @@ def cyan(request):
                         t_data = cyan_zap(url)
                 elif scanner == "nikto":
                         t_data = cyan_nikto(url)
+                elif scanner == "wpscan":
+                        t_data = cyan_wpscan(url)
                 elif scanner == "all":
-                        data1 = cyan_nmap(url)                
-                        data2 = cyan_zap(url)
-                        data3 = cyan_nikto(url)
-                        with open('CyAn/results_dump.json','a+') as fp:
-                                #data1 = json.dump(fp)
-                                json.dump(data1, fp)
-                                data1.update(data2)
-                                json.dump(data1, fp)
-                                data1.update(data3)
-                                json.dump(data1, fp)
-                        # use the following 2 lines if you want to see the output on the screen
-                        #with open('CyAn/results_dump.json','r') as f:
-                        #        t_data = f.read() 
-                        # use the following line of you jsut want text output on the screen
-                        t_data = "Scan Completed agaist %s, using ZAP, NMAP, and Nikto.  Check Output folder for results" %url
+                        t_data = cyan_all(url)
                         
                 else:
                         t_data = {"status": "not defined", "output":"not defined"}

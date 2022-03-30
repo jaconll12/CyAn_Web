@@ -14,16 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.conf.urls import url
-from django.urls import path
+#from django.conf.urls import re_path
+from django.urls import path, re_path
 from CyAn.views import cyan  #added
 from CyAn.views import results 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^admin/', admin.site.urls),
-    url(r'^cyan_api$', cyan),
-    url(r'^cyan_api/results$', results)
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^cyan_api$', cyan),
+    re_path(r'^cyan_api/results/by_url$', results)
+    #url(r'^admin/', admin.site.urls),
+    #url(r'^cyan_api$', cyan),
+    #url(r'^cyan_api/results$', results)
     #path('cyan_api/<str:scanner>/', cyan)
 
     ]

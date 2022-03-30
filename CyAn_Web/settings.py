@@ -77,16 +77,19 @@ WSGI_APPLICATION = 'CyAn_Web.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'cyan_django_db',
         'USER': 'dbadmin',
         'PASSWORD': 'Password1@',
-        'HOST': 'mysql', 
+        'HOST': 'localhost', 
         'PORT': '3306',
     }
 }
 
-
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": True,
+}
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

@@ -1,5 +1,6 @@
 import os
 import subprocess
+from sunau import AUDIO_FILE_ENCODING_DOUBLE
 import time
 from pprint import pprint
 from datetime import datetime
@@ -7,6 +8,7 @@ import sys
 import mysql.connector
 from mysql.connector import Error
 from mysql.connector import errorcode
+import lxml.etree as etree 
 
 
 import json
@@ -38,22 +40,40 @@ def print_menu():       ## Your menu design here
     
 
 def niktoscan(url):
-    results = subprocess.getoutput("perl /home/nikto/nikto/program/nikto.pl -h " +str(url))
+    results = subprocess.getoutput("perl ../nikto/program/nikto.pl -nossl -h " +str(url))
     print(url)
+    file = open("CyAn/output/nikto_out_" +str(url) + ".txt", "w")
+    file.write(results)
+    file.close
     return results
-     
+
+def wpscan(url):
+    with open('/Users/jamesclloyd/CyAn_Web/scanner_config.json') as json_data:
+        d = json.load(json_data)
+    wpapikey = d["wpscan"]["wpapikey"]
+    results = subprocess.getoutput("/opt/homebrew/bin/wpscan --api-token " +str(wpapikey)+ " --url " +str(url)+ " --ignore-main-redirect --disable-tls-checks -f json")
+    filen = "CyAn/output/wpscan_" +str(url)+ ".json"
+    json_string = json.dumps(results)
+    with open(filen, 'w') as outfile:
+        json.dump(json_string, outfile)
+    print(url) 
+    return results
+
 def nmapscan(url):
+    #print(os.system("pwd"))
     results = subprocess.check_output("nmap -sV -sC --script http-enum,http-headers,http-methods " +str(url) + " -oX CyAn/output/nmap_out_" +str(url) + ".xml", shell=True)
     print(url)
     return results
    
 def zapscan(url):
-    print  ("Zap scan started")
+    print  ("Zap scan started, XML Findings are on Output Directory")
     createconfig(url)
-    #tar = "http://" + url
     #results = subprocess.getoutput("docker run -t owasp/zap2docker-stable zap-full-scan.py -t" +str(tar))
-    results = subprocess.getoutput("python CyAn/scripts/zap_api.py")
-    return results
+    subprocess.getoutput("python3 /Users/jamesclloyd/CyAn_Web/CyAn/scripts/zap_api.py")
+    x = etree.parse('/Users/jamesclloyd/CyAn_Web/CyAn/output/zap_report_' +str(url)+ '.xml') 
+    xfile = etree.tostring(x, pretty_print = True)
+    #return results
+    return xfile
 
     
 def createconfig(url):
@@ -69,7 +89,7 @@ def createconfig(url):
         json_data.close()
 
 
-def write_db(url,nmapresults,niktoresults,zapresults):
+def write_db(url,nmapresults,niktoresults,zapresults,wpresults):
     with open('db.json') as json_data:
         d = json.load(json_data)
         for p in d['db']:
@@ -78,7 +98,10 @@ def write_db(url,nmapresults,niktoresults,zapresults):
             user = p["user"]
             password = p["password"] 
 
-   
+    #json_file = "/Users/jamesclloyd/CyAn_Web/CyAn/output/wpscan_" +str(url)+ ".json"
+    #with open(json_file, 'r') as myfile:
+    #    wpscanresults=myfile.read()
+    
     now = datetime.now()
     formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
     try:
@@ -88,7 +111,7 @@ def write_db(url,nmapresults,niktoresults,zapresults):
                                          user= user,
                                          password = password,
                                          auth_plugin='mysql_native_password')
-        mySql_insert_query = """INSERT INTO findings (url,nmap_results, nikto_results, zap_results, date_ran) VALUES (%s,%s,%s,%s,%s) """,(url,nmapresults, niktoresults, zapresults, formatted_date)
+        mySql_insert_query = """INSERT INTO findings (url,nmap_results, nikto_results, zap_results, wpscan_results, date_ran) VALUES (%s,%s,%s,%s,%s,%s) """,(url,nmapresults, niktoresults, zapresults,wpresults, formatted_date)
         cursor = connection.cursor()
         cursor.execute(*mySql_insert_query)
         connection.commit()
@@ -108,25 +131,31 @@ def closeup(url):
     today = datetime.now()
     folder = today.strftime('%Y%m%d') +"_" +str(url)
     if not os.path.exists("CyAn/" + folder):
-        os.makedirs("CyAn/" + folder)
-        #os.mkdir("CyAn/" + folder)
-    os.system("cp -rf CyAn/output/* CyAn/" + folder)
-    os.system("rm CyAn/output/*")
-
+        os.system("mkdir CyAn/" +folder)
+        os.system("cp -rf CyAn/output/* CyAn/" + folder)
+        os.system("rm -rf CyAn/output/*")
+    else:
+        os.system("cp -rf CyAn/output/* CyAn/" + folder)
+        os.system("rm -rf CyAn/output/*")
 
 createconfig(tar)
 nmapr = "NULL"
 niktor = "NULL"
 zapr = "NULL"
+wptor = "NULL"
 if scanner == "nmap":
     nmapr = nmapscan(tar)
 elif scanner== "zap":
     zapr = zapscan(tar)
 elif scanner== "nikto":
     niktor= niktoscan(tar)
-
-write_db(tar, nmapr, niktor, zapr)
+elif scanner== "wpscan":
+    wptor= wpscan(tar)
+elif scanner=="all":
+    nmapr = nmapscan(tar)
+    niktor= niktoscan(tar)
+    zapr = zapscan(tar)
+else:
+    print ("You must choose a scanner. nmap,zap,nikto,wpscan or all {'all' does not include WPScan}")
+write_db(tar, nmapr, niktor, zapr, wptor)
 closeup(tar)
-
-
-

@@ -10,6 +10,8 @@ Cyan_Web API guidance
 Start Django Server
 - run python3 manage.py runserver From  CyAn_Web
 
+EDIT: Added support for WPScan (will require your own WPScan API Key)
+
 POST 
 Using Curl
  curl -i -d '{"scanner":"nmap","url":"sharksec.net"}' http://127.0.0.1:8000/cyan_api
