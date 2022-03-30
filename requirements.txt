@@ -3,7 +3,6 @@ django-sslserver
 djangorestframework
 mysql-connector
 mysql-connector-python
-mysql-connector-python-rf
 pyOpenSSL
 requests
 urllib3
