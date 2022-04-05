@@ -22,8 +22,8 @@ from CyAn.views import results
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^admin/', admin.site.urls),
-    re_path(r'^cyan_api$', cyan),
-    re_path(r'^cyan_api/results/by_url$', results)
+    re_path(r'^cyan_api$', cyan, name='cyan'),
+    re_path(r'^cyan_api/results/by_url$', results, name='results')
     #url(r'^admin/', admin.site.urls),
     #url(r'^cyan_api$', cyan),
     #url(r'^cyan_api/results$', results)

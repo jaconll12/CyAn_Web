@@ -2,7 +2,7 @@
 import json
 import sys
 #tar = sys.argv[0]
-tar = "www.google.com"
+tar = "NULL"
 
 with open('config1.json', 'r') as json_data:
     d = json.load(json_data)
