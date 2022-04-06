@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'CyAn',
     'sslserver',
-    'rest_framework'
+    'rest_framework',
+    'rest_framework.authtoken'
  ]
 
 
@@ -71,10 +72,14 @@ TEMPLATES = [
     },
 ]
 
-#WSGI_APPLICATION = 'CyAn_Web.wsgi.application'
-WSGI_APPLICATION = 'wsgi.application'
-
-
+WSGI_APPLICATION = 'CyAn_Web.wsgi.application'
+#WSGI_APPLICATION = 'application'
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema',
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- TokenAuthentication
+    ],
+}
  # Database
  # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 

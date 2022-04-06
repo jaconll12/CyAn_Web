@@ -2,7 +2,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 import json,requests
 import xml
 from subprocess import Popen, PIPE, STDOUT
@@ -131,9 +131,9 @@ def cyan(request):
                         t_data = {"status": "not defined", "output":"not defined"}
 
                 
-                response = HttpResponse(json.dumps(t_data) , content_type='application/json', status=200)
-                return response
-
+                #response = HttpResponse(json.dumps(t_data) , content_type='application/json', status=200)
+                #return response
+                return JsonResponse(t_data)
         elif request.method == 'GET':
                 scanner = request.GET['scanner']
                 url = request.GET['url']
@@ -147,12 +147,12 @@ def cyan(request):
                         t_data = cyan_wpscan(url)
                 elif scanner == "all":
                         t_data = cyan_all(url)
-                        
                 else:
                         t_data = {"status": "not defined", "output":"not defined"}
               
-                response = HttpResponse(json.dumps(t_data) , content_type='application/json', status=200)
-                return response
+                #response = HttpResponse(json.dumps(t_data) , content_type='application/json', status=200)
+                #return response
+                return JsonResponse(t_data)
                 #return HttpResponse('<h2>GET Worked. Scanner is {}, and the URL to be scanned it {}</h2>'.format(scanner,url))\
 
 def results(request):
@@ -161,13 +161,14 @@ def results(request):
                 #data = cyan_1()
                 url = request_data["url"]
                 t_data = search(url)
-                response = HttpResponse(json.dumps(t_data) , content_type='application/json', status=200)
-                return response
-
+                #response = HttpResponse(json.dumps(t_data) , content_type='application/json', status=200)
+                #return response
+                return JsonResponse(t_data)
         elif request.method == 'GET':
                 #scanner = request.GET['scanner']
                 url = request.GET['url']
                 t_data = search(url)
         
-                response = HttpResponse(json.dumps(t_data) , content_type='application/json', status=200)
-                return response
+                #response = HttpResponse(json.dumps(t_data) , content_type='application/json', status=200)
+                #return response
+                return JsonResponse(t_data)
