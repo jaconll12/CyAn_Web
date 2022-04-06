@@ -71,7 +71,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'CyAn_Web.wsgi.application'
+#WSGI_APPLICATION = 'CyAn_Web.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 
  # Database
