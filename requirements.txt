@@ -11,7 +11,7 @@ charset-normalizer==2.0.12
 distlib==0.3.4
 filelock==3.6.0
 idna==3.3
-joblib==1.1.0
+joblib==1.2.0
 lxml==4.9.1
 mysql
 mysqlclient
