@@ -33,3 +33,4 @@ virtualenvwrapper==4.8.4
 zap
 django_heroku
 gunicorn
+setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
