@@ -11,8 +11,8 @@ charset-normalizer==2.0.12
 distlib==0.3.4
 filelock==3.6.0
 idna==3.3
-joblib==1.1.0
-lxml==4.8.0
+joblib==1.2.0
+lxml==4.9.1
 mysql
 mysqlclient
 wheel
@@ -20,7 +20,7 @@ numpy
 packaging==21.3
 pbr==5.8.1
 platformdirs==2.5.1
-protobuf==3.19.4
+protobuf==3.19.5
 pyerfa==2.0.0.1
 python-owasp-zap-v2.4 @ git+https://github.com/zaproxy/zap-api-python@fbc0fa235dde329485655e3afd902691ef620199
 PyYAML==6.0
