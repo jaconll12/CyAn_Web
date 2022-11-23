@@ -5,7 +5,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'python --version'
-		sh python manage.py runserver
+		        sh python manage.py runserver
             }
         }
     }
