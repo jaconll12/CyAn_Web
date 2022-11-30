@@ -11,7 +11,7 @@
 
             stage('Test') {
                 steps {
-                    sh 'python CyAn_Web/manage.py test ./CyAn_Web'
+                    sh 'echo not yet...'
                 }
             }
 
