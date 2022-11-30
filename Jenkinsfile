@@ -1,6 +1,8 @@
       pipeline {    
         agent {
-            docker { image 'node:16.13.1-alpine' }
+            withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']){
+                docker { image 'node:16.13.1-alpine' }
+            }
         }
         stages {
             stage('Build') {
