@@ -1,13 +1,11 @@
       pipeline {    
-        agent {
-            withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']){
-                docker { image 'node:16.13.1-alpine' }
-            }
+        agent any
         }
         stages {
             stage('Build') {
                 steps {
                     withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']){
+                        sh 'apt install python'
                         sh 'bin/pip install -r requirements.txt'
                     
                     }
