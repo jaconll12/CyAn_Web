@@ -4,7 +4,7 @@
             stage('Build') {
                 steps {
                     withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']){
-                        sh 'echo "Build not yet..."'
+                        sh 'pip install -r requirements.txt'
                     
                     }
                 }
