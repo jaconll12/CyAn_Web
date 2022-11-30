@@ -1,11 +1,10 @@
     pipeline {    
-        agent any
+        agent { docker { image 'python:3.7.2' } }
 
         stages {
             stage('Build') {
                 steps {
                     withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin']){
-                        sh 'apt install python'
                         sh 'bin/pip install -r requirements.txt'
                     
                     }
