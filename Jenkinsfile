@@ -10,13 +10,15 @@
 
             stage('Test') {
                 steps {
-                    sh 'Test not yet...'
+                    withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin'])
+                        sh 'Test not yet...'
                 }
             }
 
             stage('Deploy') {
                 steps {
-                    sh 'Deploy not yet...'
+                    withEnv(['PATH+EXTRA=/usr/sbin:/usr/bin:/sbin:/bin'])
+                        sh 'Deploy not yet...'
                 }
             }
         }
