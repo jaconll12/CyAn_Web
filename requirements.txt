@@ -1,16 +1,15 @@
 python-owasp-zap-v2.4 @ git+https://github.com/zaproxy/zap-api-python@fbc0fa235dde329485655e3afd902691ef620199
 asgiref==3.5.0
-astropy==5.0.2
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12
 cryptography==36.0.2
-Django==4.0.3
+Django==4.0.8
 django-sslserver==0.22
 djangorestframework==3.13.1
 idna==3.3
-joblib==1.1.0
-lxml==4.8.0
+joblib==1.2.0
+lxml==4.9.1
 mysql==0.0.3
 mysql-connector==2.2.9
 mysql-connector-python==8.0.28
