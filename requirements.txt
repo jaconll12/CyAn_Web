@@ -1,5 +1,5 @@
 python-owasp-zap-v2.4 @ git+https://github.com/zaproxy/zap-api-python@fbc0fa235dde329485655e3afd902691ef620199
-asgiref==3.5.0
+asgiref==3.5.2
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12
