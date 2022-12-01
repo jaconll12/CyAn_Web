@@ -14,8 +14,8 @@
             stage('Deploy') {
                 steps {
                     sh '''
-                    pwd
-                   
+                    chmod +x deploy.sh
+                    ./deploy.sh
                     '''
                 }
             }
