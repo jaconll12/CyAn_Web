@@ -10,7 +10,7 @@ django-sslserver==0.22
 djangorestframework==3.13.1
 idna==3.3
 joblib==1.1.0
-lxml==4.8.0
+lxml==4.9.1
 mysql==0.0.3
 mysql-connector==2.2.9
 mysql-connector-python==8.0.28
