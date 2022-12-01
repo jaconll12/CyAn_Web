@@ -14,6 +14,7 @@
             stage('Deploy') {
                 steps {
                     sh '''
+                    echo 'pwd'
                     python3 manage.py runserver 
                     '''
                 }
