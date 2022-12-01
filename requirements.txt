@@ -4,16 +4,17 @@ djangorestframework
 mysql-connector
 mysql-connector-python
 pyOpenSSL
-requests
-urllib3
-mysql
-mysqlclient
-wheel
-numpy
+requests==2.27.1
+mysql==0.0.3
+mysqlclient==2.1.0
+numpy==1.22.3
 python-owasp-zap-v2.4 @ git+https://github.com/zaproxy/zap-api-python@fbc0fa235dde329485655e3afd902691ef620199
-six
-threadpoolctl
-virtualenv
-zap
+six==1.16.0
+threadpoolctl==3.1.0
 django_heroku
 gunicorn
+urllib3==1.26.9
+virtualenv==20.13.3
+virtualenv-clone==0.5.7
+virtualenvwrapper==4.8.4
+zap==2.1
