@@ -1,8 +1,9 @@
 #!/bin/bash
 python3 -m venv env
-python3 pip install --upgrade pip
-python3 pip install django
-python3 pip install -r requirements.txt
+source env/bin/activate
+pip install --upgrade pip
+pip install django
+pip install -r requirements.txt
 echo $PWD
 source env/bin/activate
 
