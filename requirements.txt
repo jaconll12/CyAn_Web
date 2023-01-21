@@ -13,7 +13,7 @@ lxml==4.9.1
 mysql==0.0.3
 mysql-connector==2.2.9
 mysql-connector-python==8.0.28
-mysqlclient==2.1.0
+mysqlclient
 packaging==21.3
 protobuf==3.19.4
 pycparser==2.21
