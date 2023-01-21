@@ -7,5 +7,5 @@ pip install -r requirements.txt
 echo $PWD
 source env/bin/activate
 
-python3 manage.py runserver 
+python3 manage.py runsslserver 
 echo "server running"
