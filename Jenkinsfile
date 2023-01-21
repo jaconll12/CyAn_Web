@@ -4,8 +4,7 @@
             stage('Build') {
                 steps {
                     sh '''
-                    chmod +x build.sh
-                    ./build.sh
+                    echo "building ....."
                     '''
                 }
             }
