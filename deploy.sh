@@ -1,6 +1,6 @@
 #!/bin/bash
 python3 -m venv env
-pip install --upgrade pip
+python3 pip install --upgrade pip
 pip install django
 pip install -r requirements.txt
 echo $PWD
