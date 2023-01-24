@@ -1,0 +1,13 @@
+python-owasp-zap-v2.4 @ git+https://github.com/zaproxy/zap-api-python@fbc0fa235dde329485655e3afd902691ef620199
+Django
+django-sslserver
+djangorestframework
+mysql==0.0.3
+mysql-connector==2.2.9
+mysql-connector-python==8.0.28
+mysqlclient
+requests
+scikit-learn==1.0.2
+zap==2.1
+urllib3
+virtualenv
