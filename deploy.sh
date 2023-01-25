@@ -5,7 +5,8 @@ pip install --upgrade pip
 pip install django
 pip install django-sslserver
 pip install djangorestframework
-pip install mysqlclient
+pip install mysqlclient==2.0.3
+pip3 install mysqlclient==2.0.3
 #pip3 install django-sslserver
 #pip install -r reqs.txt
 echo $PWD
