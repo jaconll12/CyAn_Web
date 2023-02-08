@@ -3,7 +3,7 @@ asgiref==3.5.2
 certifi==2021.10.8
 cffi==1.15.0
 charset-normalizer==2.0.12
-cryptography==36.0.2
+cryptography==39.0.1
 Django==4.1.3
 django-sslserver
 djangorestframework==3.13.1
