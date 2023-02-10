@@ -7,7 +7,6 @@ class HomepageTests(SimpleTestCase):
     def test_base_url_not_found(self):
         response = self.client.get("http://127.0.0.1:8000/")
         self.assertEqual(response.status_code, 404)
-
     def test_wpscan(self):  
         response = self.client.get(("http://127.0.0.1:8000/cyan_api?scanner=wpscan&url=sharksec.net"))
         self.assertEqual(response.status_code, 200)
