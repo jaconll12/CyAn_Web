@@ -2,7 +2,6 @@
 from django.test import SimpleTestCase
 #from django.urls import urlpatterns  
 
-
 class HomepageTests(SimpleTestCase):
     def test_base_url_not_found(self):
         response = self.client.get("http://127.0.0.1:8000/")
