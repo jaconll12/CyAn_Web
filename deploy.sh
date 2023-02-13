@@ -1,5 +1,6 @@
 #!/bin/bash
 apt install python3-dev default-libmysqlclient-dev build-essential
+echo "down to pip"
 python3 -m venv env
 source env/bin/activate
 pip install --upgrade pip
