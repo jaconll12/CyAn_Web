@@ -1,0 +1,5 @@
+python-owasp-zap-v2.4 @ git+https://github.com/zaproxy/zap-api-python@fbc0fa235dde329485655e3afd902691ef620199
+Django
+requests
+zap==2.1
+urllib3

@@ -152,7 +152,8 @@ def cyan(request):
               
                 #response = HttpResponse(json.dumps(t_data) , content_type='application/json', status=200)
                 #return response
-                return JsonResponse(t_data)
+                #return JsonResponse(t_data)
+                return JsonResponse((t_data), content_type='application/json', status=200)
                 #return HttpResponse('<h2>GET Worked. Scanner is {}, and the URL to be scanned it {}</h2>'.format(scanner,url))\
 
 def results(request):
@@ -171,4 +172,4 @@ def results(request):
         
                 #response = HttpResponse(json.dumps(t_data) , content_type='application/json', status=200)
                 #return response
-                return JsonResponse(t_data)
+                return JsonResponse((t_data), content_type='application/json', status=200)
