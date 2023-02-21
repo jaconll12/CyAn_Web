@@ -10,6 +10,11 @@
             }
             
             stage('Test') {
+                agent {
+                    docker {
+                        image 'python:3-alpine'
+                    }
+                }
                 steps {
     
                     sh "bash build.sh"
