@@ -1,8 +1,7 @@
 #!/bin/bash
 /Library/Developer/CommandLineTools/usr/bin/python3 -m pip install --upgrade pip
 echo "1"
-/Library/Developer/CommandLineTools/usr/bin/python3 -m pip install virtualenv
-virtualenv env -p python3
+python3 -m venv env
 source env/bin/activate
 echo "2"
 env/bin/pip3 install --upgrade pip
