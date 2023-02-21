@@ -7,6 +7,9 @@ pip3 install --upgrade pip
 pip3 install django
 pip3 install django-sslserver
 pip3 install djangorestframework
+pip3 install mysql-connector
+pip3 install mysql-connector-python
+pip3 install mysql-python
 pip3 install mysqlclient
 pip3 install requests==2.27.1
 pip3 install six==1.16.0
@@ -15,8 +18,7 @@ pip3 installdj ango_heroku
 pip3 install  gunicorn
 pip3 install urllib3==1.26.9
 
-pip3 install mysql-connector
-pip3 install mysql-connector-python
+
 echo "2"
 django-admin --version
 echo "3"
