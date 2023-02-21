@@ -10,12 +10,11 @@ pip3 install djangorestframework
 pip3 install mysql-connector
 pip3 install mysql-connector-python
 pip3 install mysql-python
-pip3 install mysqlclient
 pip3 install requests==2.27.1
 pip3 install six==1.16.0
-pip3 installt hreadpoolctl==3.1.0
-pip3 installdj ango_heroku
-pip3 install  gunicorn
+pip3 install threadpoolctl==3.1.0
+pip3 install django_heroku
+pip3 install gunicorn
 pip3 install urllib3==1.26.9
 
 
