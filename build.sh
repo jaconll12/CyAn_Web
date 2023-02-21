@@ -9,7 +9,7 @@ env/bin/pip3 install --upgrade pip
 env/bin/pip3 install -r requirements.txt
 
 echo "3"
-python3 manage.py migrate
-python3 manage.py test
+env/bin/python3 manage.py migrate
+env/bin/python3 manage.py test
 
 echo "build finished"
