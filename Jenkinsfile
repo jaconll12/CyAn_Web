@@ -11,9 +11,9 @@
             
             stage('Test') {
                 steps {
-                    sh '''
-                    ../build.sh
-                    '''
+    
+                    'sh ../build.sh'
+                
                 }
             }
         }
