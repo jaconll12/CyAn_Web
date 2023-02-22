@@ -7,7 +7,7 @@ pip3 install --upgrade pip
 pip3 install django
 pip3 install django-sslserver
 pip3 install djangorestframework
-pip3 install mysql==0.0.3
+pip3 install PyMySQL
 pip3 install mysqlclient==2.1.0
 pip3 install mysql-connector
 pip3 install mysql-connector-python
