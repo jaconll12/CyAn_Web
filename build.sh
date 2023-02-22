@@ -12,7 +12,7 @@ pip3 install django
 pip3 install django-sslserver
 pip3 install djangorestframework
 pip3 install PyMySQL
-pip3 install mysqlclient==2.1.1
+pip3 install mysqlclient
 pip3 install mysql-connector
 pip3 install mysql-connector-python
 pip3 install requests==2.27.1
