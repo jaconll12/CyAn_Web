@@ -1,9 +1,11 @@
 #!/bin/bash
-pip3 install virtualenv
+
 echo "1"
-virtualenv newenv
-source newenv/bin/activate
-pip3 install --upgrade pip
+python3 -m pip install --user --upgrade pip
+python3 -m pip install --user virtualenv
+python3 -m venv venv
+source venv/bin/activate
+
 pip3 install django
 pip3 install django-sslserver
 pip3 install djangorestframework
