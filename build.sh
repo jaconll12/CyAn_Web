@@ -5,7 +5,8 @@ python3 -m pip install --user --upgrade pip
 python3 -m pip install --user virtualenv
 python3 -m venv venv
 source venv/bin/activate
-
+pip3 install --upgrade pip
+echo "2"
 pip3 install django
 pip3 install django-sslserver
 pip3 install djangorestframework
@@ -21,7 +22,7 @@ pip3 install gunicorn
 pip3 install urllib3==1.26.9
 
 
-echo "2"
+
 django-admin --version
 echo "3"
 
