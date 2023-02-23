@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "1"
-PYTHONPATH="/opt/homebrew/bin/python3:$PYTHONPATH"
+PYTHONPATH="/opt/homebrew/bin/python3"
 export PYTHONPATH
 python3 -V
 python3 -m pip install --user --upgrade pip
