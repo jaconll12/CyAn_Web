@@ -3,10 +3,10 @@
 echo "1"
 python3 -V
 which python3
-python3 -m pip install --user --upgrade pip
-python3 -m pip install --user virtualenv
-python3 -m venv venv
-source venv/bin/activate
+python3 -m pip install --upgrade pip
+python3 -m pip install virtualenv
+
+
 echo "2"
 pip3 install -r requirements.txt 
 
