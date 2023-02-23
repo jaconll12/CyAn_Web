@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "1"
-python3 -v
+python3 -V
 python3 -m pip install --user --upgrade pip
 python3 -m pip install --user virtualenv
 python3 -m venv venv
