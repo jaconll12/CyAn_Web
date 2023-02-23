@@ -5,7 +5,7 @@ python3 -V
 which python3
 python3 -m pip install --upgrade pip
 python3 -m pip install virtualenv
-python3 -m venv venv
+python3 -m virtualenv venv
 source venv/bin/activate
 python3 -m venv --upgrade ENV_DIR
 pip3 install --upgrade pip
