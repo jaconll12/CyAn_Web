@@ -1,7 +1,8 @@
 #!/bin/bash
 
 echo "1"
-export PYTHONPATH=$WORKSPACE:$PYTHONPATH
+PYTHONPATH="/opt/homebrew/bin/python3:$PYTHONPATH"
+export PYTHONPATH
 python3 -V
 python3 -m pip install --user --upgrade pip
 python3 -m pip install --user virtualenv
