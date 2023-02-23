@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "1"
+export PYTHONPATH=$WORKSPACE:$PYTHONPATH
 python3 -V
 python3 -m pip install --user --upgrade pip
 python3 -m pip install --user virtualenv
