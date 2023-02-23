@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#!/opt/homebrew/bin/python3
 echo "1"
 PYTHONPATH="/opt/homebrew/bin/python3"
 export PYTHONPATH
