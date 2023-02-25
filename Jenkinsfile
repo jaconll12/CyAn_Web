@@ -4,7 +4,7 @@
             stage('Build') {
                 steps {
     
-                    sh "bash.sh"
+                    sh "build.sh"
                 
                 }
             }
