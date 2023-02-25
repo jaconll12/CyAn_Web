@@ -16,6 +16,13 @@
                     sh "test.sh"
                 
                 }
+                stage('Deploy') {
+        
+                steps {
+    
+                    sh "deploy.sh"
+                
+                }
             }
         }
     }
