@@ -15,5 +15,7 @@ export PYTHONPATH
 python3 -V
 pip3 install -r requirements.txt 
 django-admin --version
+python3 manage.py migrate
+python3 manage.py test
 deactivate
 echo "build finished"

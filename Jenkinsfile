@@ -3,9 +3,9 @@
         stages {
             stage('Build') {
                 steps {
-                    sh '''
-                    echo "building ....."
-                    '''
+    
+                    sh "bash.sh"
+                
                 }
             }
             
@@ -13,7 +13,7 @@
         
                 steps {
     
-                    sh "bash build.sh"
+                    sh "test.sh"
                 
                 }
             }
