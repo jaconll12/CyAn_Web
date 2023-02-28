@@ -3,7 +3,7 @@
         stages {
             stage('Build') {
                 steps {
-                    build.sh
+                    sh "bash build.sh"
                 
                 }
             }
