@@ -2,6 +2,7 @@
 #!/opt/homebrew/bin/python3
 python3 -V
 which python3
+echo $PYTHONPATH
 python3 -m pip install --upgrade pip
 python3 -m pip install virtualenv
 python3 -m virtualenv venv
