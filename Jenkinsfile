@@ -21,7 +21,7 @@
         
                 steps {
     
-                    sh "bash deploy.sh"
+                    sh "echo deploying..."
                 
                 }
                 
