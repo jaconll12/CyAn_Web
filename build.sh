@@ -1,6 +1,6 @@
 #!/bin/bash
-#!/opt/homebrew/bin/python3
-python3 -V
+#!/opt/homebrew/bin/
+/opt/homebrew/bin/python3 -V
 which python3
 echo $PYTHONPATH
 python3 -m pip install --upgrade pip
