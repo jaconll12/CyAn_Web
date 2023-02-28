@@ -12,7 +12,7 @@
         
                 steps {
     
-                    sh "test.sh"
+                    sh "bash test.sh"
                 
                 }
                 
@@ -21,7 +21,7 @@
         
                 steps {
     
-                    sh "deploy.sh"
+                    sh "bash deploy.sh"
                 
                 }
                 
