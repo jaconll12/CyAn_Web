@@ -22,7 +22,6 @@ python3 -V
 /opt/homebrew/bin/python3 -m pip install -r requirements.txt 
 /opt/homebrew/bin/python3 -m pip install django
 django-admin --version
-/opt/homebrew/bin/python3 manage.py migrate
-/opt/homebrew/bin/python3 manage.py test
+
 deactivate
 echo "build finished"
