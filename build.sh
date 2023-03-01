@@ -16,6 +16,7 @@ pip3 install --upgrade pip
 
 python3 -V
 pip3 install -r requirements.txt 
+/opt/homebrew/bin/python3 pip install django
 django-admin --version
 /opt/homebrew/bin/python3 manage.py migrate
 /opt/homebrew/bin/python3 manage.py test
