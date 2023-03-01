@@ -23,5 +23,5 @@ python3 -V
 /opt/homebrew/bin/python3 -m pip install django
 django-admin --version
 
-deactivate
+
 echo "build finished"

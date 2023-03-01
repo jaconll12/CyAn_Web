@@ -21,5 +21,5 @@ deactivate
 
 
 
-deactivate
+
 echo "test finished"
