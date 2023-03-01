@@ -12,7 +12,7 @@
         
                 steps {
     
-                    sh "bash test.sh"
+                     sh "echo deploying..."
                 
                 }
                 

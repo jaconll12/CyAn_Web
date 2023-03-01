@@ -16,5 +16,8 @@ pip3 install --upgrade pip
 
 python3 -V
 pip3 install -r requirements.txt 
+django-admin --version
+/opt/homebrew/bin/python3 manage.py migrate
+/opt/homebrew/bin/python3 manage.py test
 deactivate
 echo "build finished"
