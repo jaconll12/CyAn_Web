@@ -3,7 +3,7 @@
 /opt/homebrew/bin/python3 -V
 which python3
 
-source yan-env/bin/activate
+source cyan-env/bin/activate
 
 PATH=/usr/local/mysql-8.0.32-macos13-arm64/bin:$PATH
 PATH=/opt/homebrew/bin:$PATH

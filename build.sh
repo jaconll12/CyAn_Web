@@ -9,7 +9,7 @@ echo $PYTHONPATH
 
 
 /opt/homebrew/bin/python3 -m virtualenv cyan-env
-source yan-env/bin/activate
+source cyan-env/bin/activate
 
 PATH=/usr/local/mysql-8.0.32-macos13-arm64/bin:$PATH
 PATH=/opt/homebrew/bin:$PATH
