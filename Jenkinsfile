@@ -3,19 +3,28 @@
         stages {
             stage('Build') {
                 steps {
-                    sh '''
-                    echo "building ....."
-                    '''
+                    sh "bash build.sh"
+                
                 }
             }
             
-            stage('Deploy') {
+            stage('Test') {
+        
                 steps {
-                    sh '''
-                    chmod +x deploy.sh
-                    ./deploy.sh
-                    '''
+    
+                     sh "bash test.sh"
+                
                 }
+                
+            }
+            stage('Deploy') {
+        
+                steps {
+    
+                    sh "echo deploying..."
+                
+                }
+                
             }
         }
     }

@@ -4,7 +4,7 @@ certifi==2022.12.7
 cffi==1.15.0
 charset-normalizer==2.0.12
 cryptography==39.0.1
-Django==4.1.6
+Django==4.1.7
 django-sslserver
 djangorestframework==3.13.1
 idna==3.3
@@ -15,7 +15,7 @@ mysql-connector==2.2.9
 mysql-connector-python==8.0.28
 mysqlclient
 packaging==21.3
-protobuf==3.19.5
+protobuf==3.19.4
 pycparser==2.21
 pyerfa==2.0.0.1
 pyOpenSSL==22.0.0
@@ -23,12 +23,9 @@ pyparsing==3.0.7
 pytz==2021.3
 PyYAML==6.0
 requests==2.27.1
-scikit-learn==1.0.2
-scipy==1.8.0
 six==1.16.0
 sqlparse==0.4.2
 threadpoolctl==3.1.0
-zap==2.1
 urllib3==1.26.9
 virtualenv==20.13.3
 virtualenv-clone==0.5.7
@@ -37,5 +34,4 @@ zap
 django_heroku
 gunicorn
 setuptools=65.5.1 
-zap==2.1
-
+numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability

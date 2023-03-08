@@ -9,9 +9,9 @@ class HomepageTests(SimpleTestCase):
     def test_wpscan(self):  
         response = self.client.get(("http://127.0.0.1:8000/cyan_api?scanner=wpscan&url=sharksec.net"))
         self.assertEqual(response.status_code, 200)
-    #def test_namp(self):  
-    #    response = self.client.get(("http://127.0.0.1:8000/cyan_api?scanner=nmap&url=sharksec.net"))
-    #    self.assertEqual(response.status_code, 200)
+    def test_namp(self):  
+        response = self.client.get(("http://127.0.0.1:8000/cyan_api?scanner=nmap&url=sharksec.net"))
+        self.assertEqual(response.status_code, 200)
     def test_nikto(self):  
         response = self.client.get(("http://127.0.0.1:8000/cyan_api?scanner=nikto&url=sharksec.net"))
         self.assertEqual(response.status_code, 200)
