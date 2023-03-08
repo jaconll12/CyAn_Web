@@ -3,24 +3,28 @@
         stages {
             stage('Build') {
                 steps {
-                    sh '''
-                    echo "building ....."
-                    '''
+                    sh "bash build.sh"
+                
                 }
             }
             
             stage('Test') {
+        
                 steps {
-                    sh '''
-                    python3 -m venv env
-                    source env/bin/activate
-                    pip install --upgrade pip
-                    pip3 install -r requirements.txt
-
-                    python manage.py migrate
-                    python manage.py test
-                    '''
+    
+                     sh "bash test.sh"
+                
                 }
+                
+            }
+            stage('Deploy') {
+        
+                steps {
+    
+                    sh "echo deploying..."
+                
+                }
+                
             }
         }
     }
