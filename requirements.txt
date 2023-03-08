@@ -30,5 +30,8 @@ urllib3==1.26.9
 virtualenv==20.13.3
 virtualenv-clone==0.5.7
 virtualenvwrapper==4.8.4
-zap==2.1
+zap
+django_heroku
+gunicorn
+setuptools=65.5.1 
 numpy>=1.22.2 # not directly required, pinned by Snyk to avoid a vulnerability
