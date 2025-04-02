@@ -15,7 +15,7 @@ mysql-connector==2.2.9
 mysql-connector-python==8.0.28
 mysqlclient
 packaging==21.3
-protobuf==3.19.4
+protobuf==3.19.5
 pycparser==2.21
 pyerfa==2.0.0.1
 pyOpenSSL==22.0.0
